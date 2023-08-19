@@ -1,0 +1,207 @@
+
+.containerMoreDetailsTask{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2C2E30;
+    min-height: 100vh;
+    font-family: 'Indie Flower';
+}
+
+.ContainerFormEditingTask{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+}
+.nav_exit_back{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.nav_exit_back> img{
+    cursor: pointer;
+}
+.newNote{
+    color: #FF983F;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.formEditinTask{
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.formEditing_Title, .formEditing_Description{
+    background-color: var(--color);
+    outline: none;
+    border-style: none;
+    padding:20px 15px;
+    font-family: 'Indie Flower';
+    font-size: 1.2rem;
+    transition: all .2s;
+}
+
+.formEditing_Title{
+    border-radius: 10px 10px 0 0;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+.formEditing_Description{
+    resize: vertical;
+    border-radius: 0 0 10px 10px;
+    height: 200px;
+}
+
+
+.ContainerColorPalett{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    background-color: #444648;
+    margin: 30px 0 0 0;
+    border-radius: 30px;
+    gap: 15px;
+}
+.colorPallets_icon{
+    display: flex;
+    border-radius: 50%;
+    cursor: default;
+    box-shadow: 3px 0 0 2px #2C2E30;
+}
+
+.ContainerColorPalett > .containerColorsChoose{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(5px, 1fr));
+}
+
+.ContainerColorPalett > .containerColorsChoose > .colorChosse{ 
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px #222;
+    cursor: pointer;
+}
+.ContainerColorPalett > .containerColorsChoose > .colorChosse1{
+    background-color: #D2E8FE;
+}
+.ContainerColorPalett > .containerColorsChoose > .colorChosse2{
+    background-color: #FFD7C7;
+}
+.ContainerColorPalett > .containerColorsChoose > .colorChosse3{
+    background-color: #FFF6BB;
+}
+.ContainerColorPalett > .containerColorsChoose > .colorChosse4{
+    background-color: #FFC2F5;
+}
+.ContainerColorPalett > .containerColorsChoose > .colorChosse5{
+    background-color: #B9FFB3;
+}
+
+#active{
+    transform: scale(1.3);
+    box-shadow: 0 0 0 4px #444648, 0 0 0 6px #fff;
+    transition: all .27s;
+}
+
+.containerMarkImportant{
+    width: 100%;
+    padding: 0 10px ;
+    display: flex;
+    margin: 30px 0 0 0;
+    max-width: 510px;
+    cursor: pointer;
+}
+.MarkImportant{
+    width: 100%;
+    display: flex;
+    border-radius: 30px;
+    background-color: #444648;
+    padding: 7px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.inputIsImportantTask, .inputIsDoneTask{
+    font-family: 'Indie Flower';
+    background-color: #444648;
+    color: #FFF6BB;
+    font-size: 1.1rem;
+    border-style: none;
+}
+
+
+.containerMarkDone{
+    width: 100%;
+    max-width: 510px;
+    padding: 0 10px ;
+    display: flex;
+    margin: 30px 0 0 0;
+    cursor: pointer;
+}
+.markDone{
+    width: 100%;
+    display: flex;
+    border-radius: 30px;
+    background-color: #444648;
+    padding: 7px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.selectedStarsMark{
+    width: 20px;
+    height: 20px;
+}
+
+
+.isDone{
+    width: 20px;
+    height: 20px;
+    background-color: #FF6600;
+    border-radius: 50%;
+    transition: all .2s;
+}
+.notIsDone{
+    width: 20px;
+    height: 20px;
+    border: 2px solid #FF6600;
+    border-radius: 50%;
+    transition: all .2s;
+}
+
+.containerButtonSubmitTask{
+    width: 100%;
+    padding: 10px;
+    max-width: 510px;
+    display: flex;
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+.containerButtonSubmitTask > input { 
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: #FF983F;
+    color: #444648;
+    font-family: 'Indie Flower';
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.containerButtonSubmitTask > input:hover{
+    background-color: #e8823e;
+}

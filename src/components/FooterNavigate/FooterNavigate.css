@@ -1,0 +1,206 @@
+:root {
+  --orange: #ff6600;
+  --light-orange: #ff983f;
+  --pale-yellow: #ffffa1;
+  --light-gray: #f5f5f5;
+  --gray: #929292;
+  --dark-gray: #1d1f21;
+  --darker-gray: #2c2e30;
+  --charcoal: #444648;
+  --lighter-gray: #e0e0e0;
+}
+
+.containerFooterNavigate {
+  width: 100%;
+  height: 70px;
+  font-family: "Indie Flower";
+  font-size: 1.2rem;
+  color: var(--pale-yellow);
+  display: flex;
+/*   justify-content: space-between;
+  background-color: var(--charcoal); 
+  padding: 0 30px;*/
+  position: fixed;
+  bottom: 0;
+  z-index: 0;
+}
+.containerFooterNavigate > .containerFooterNavigate-FilteGroup {
+  background-color: var(--charcoal); 
+  width: 70%;
+  padding: 0 20px;
+}
+
+.containerFilterGroup{
+  width: 170px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.containerFilterGroup > .buttonFilterGroup{
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: default;
+  border-radius: 10px;
+  box-shadow:inset 0 -3px 2px 0 #2c2e30cc ,  inset 0 2px 3px 1px #A2A2A244;
+  transition: all .2s;
+}
+.containerFilterGroup > .filterOptions{
+  list-style: none;
+  display: flex;
+  background-color: var(--charcoal);
+  font-size: 1rem;
+  position: absolute;
+  top: 5px;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  border-radius: 10px 10px 2px 2px;
+  box-shadow: 0 3px 4px 0 #1d1f2166, inset 0 2px 4px 0 #e0e0e01a;
+  transition: all .3s;
+}
+.containerFilterGroup > .filterOptions > li { 
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.containerFilterGroup > #checkFilterActive { 
+  display: none;
+}
+
+.containerFilterGroup > #checkFilterActive:checked + .filterOptions {
+  height: 120px;
+  padding: 15px 2px 5px 10px;
+  top: -120px;
+}
+
+.containerFilterGroup > #checkFilterActive:checked ~ .buttonFilterGroup{
+  /* border-radius: 2px 2px 10px 10px; */
+  box-shadow:inset 0 -3px 2px 0 #A2A2A244,  inset 0 2px 3px 1px #2c2e30cc;
+}
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+
+
+.ContainerAllButtonTask{
+ width: 30%;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+}
+
+.ContainerAllButtonTask-Up{
+  height: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ContainerAllButtonTask-Up-Fill-Right{
+  background-color:var(--charcoal);
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 5px;
+}
+
+.ContainerAllButtonTask-Up-Fill-Left{
+  background-color:var(--charcoal);
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 5px;
+}
+
+.ContainerAllButtonTask-Down{
+  width: 100%;
+  height: 40px;
+  background-color:var(--charcoal);
+}
+
+.containerButtonTask {
+  min-width: 50px;
+  height: 50px;
+  background-color: var(--light-gray);
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  transform: translateY(-30px);
+  z-index: 10;
+  margin: 0 10px;
+
+}
+
+.containerButtonTask::before{
+  content: '';
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  border-radius: 0 0 0 18px ;
+  box-shadow: -30px 30px 0 0 var(--charcoal);
+}
+.containerButtonTask::after{
+  content: '';
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  border-radius: 0 0 18px 0 ;
+  box-shadow: 30px 30px 0 0 var(--charcoal);
+}
+
+
+.containerButtonTask:hover{ 
+  background-color: #d9d0c8;
+}
+
+.containerButtonTask > .buttonTask {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.containerButtonTask > .buttonTask > .lineButton {
+  width: 30px;
+  height: 4px;
+  margin: 1px;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 80;
+}
+.containerButtonTask > .buttonTask > .lineButton1 {
+  background-color: var(--light-orange);
+}
+
+.containerButtonTask > .buttonTask > .lineButton2 {
+  background-color: var(--orange);
+  transform: rotate(90deg);
+}

@@ -1,0 +1,38 @@
+
+:root {
+    --orange: #ff6600;
+    --light-orange: #ff983f;
+    --pale-yellow: #FFFFA1;
+    --light-gray: #F5F5F5;
+    --gray: #929292;
+    --dark-gray: #1D1F21;
+    --darker-gray: #2C2E30;
+    --charcoal: #444648;
+    --lighter-gray: #e0e0e0;
+  }
+
+.formRegisterUser{
+    flex: none;
+    width: 100%;
+    padding: 0 15px;
+    scroll-snap-align: start;
+}
+
+.formRegisterUser>input{
+    border-style: none;
+    background-color: var(--pale-yellow);
+    border-bottom: 1px solid  #bebe6b;
+    font-family: 'Indie Flower', cursive;
+    color: var(--darker-gray);
+    font-size: 1.3em;
+    padding: 0 5px ;
+    margin: 15px 0 ;
+    width: 100%;
+}
+.formRegisterUser>input::placeholder{
+    color: var(--light-orange);
+}
+
+.formRegisterUser>input:focus{
+    outline: none;
+}

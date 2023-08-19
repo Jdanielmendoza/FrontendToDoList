@@ -1,0 +1,37 @@
+:root {
+  --orange: #ff6600;
+  --light-orange: #ff983f;
+  --pale-yellow: #FFFFA1;
+  --light-gray: #F5F5F5;
+  --gray: #929292;
+  --dark-gray: #1D1F21;
+  --darker-gray: #2C2E30;
+  --charcoal: #444648;
+  --lighter-gray: #e0e0e0;
+}
+@font-face {
+  font-family: "Indie Flower";
+  src: url(/fonts/Indie_Flower/IndieFlower-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Define la segunda fuente */
+@font-face {
+  font-family: "Kaushan Script";
+  src: url(/fonts/Kaushan_Script/KaushanScript-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #444648;
+}

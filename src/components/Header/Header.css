@@ -1,0 +1,12 @@
+.header-Title{
+    width: 100%;
+    height: 50px;
+    background-color: #444648;
+    font-family: 'Kaushan Script';
+    color: #FF983F;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
