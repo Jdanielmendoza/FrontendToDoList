@@ -21,9 +21,9 @@
     height: auto;
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 15px 20px;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 .nav_exit_back> img{
     cursor: pointer;
@@ -32,6 +32,7 @@
     color: #FF983F;
     font-weight: 400;
     font-size: 1.3rem;
+    font-family: 'Indie Flower';
 }
 
 .formEditinTask{
@@ -59,7 +60,7 @@
 .formEditing_Description{
     resize: vertical;
     border-radius: 0 0 10px 10px;
-    height: 200px;
+    height: 180px;
 }
 
 
@@ -69,7 +70,7 @@
     align-items: center;
     max-width: 500px;
     background-color: #444648;
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
     border-radius: 30px;
     gap: 15px;
 }
@@ -119,7 +120,7 @@
     width: 100%;
     padding: 0 10px ;
     display: flex;
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
     max-width: 510px;
     cursor: pointer;
 }
@@ -147,7 +148,7 @@
     max-width: 510px;
     padding: 0 10px ;
     display: flex;
-    margin: 30px 0 0 0;
+    margin: 25px 0 0 0;
     cursor: pointer;
 }
 .markDone{
@@ -181,12 +182,35 @@
     transition: all .2s;
 }
 
+
+.ContainerDoPomodoro{
+    width: 100%;
+    max-width: 510px;
+    padding: 0 10px ;
+    display: flex;
+    margin: 25px 0 0 0;
+    cursor: pointer;
+}
+.DoPomodoro{
+    width: 100%;
+    display: flex;
+    border-radius: 30px;
+    background-color: #444648;
+    padding: 7px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Indie Flower';
+    color: #FFF6BB;
+    font-size: 1.1rem;
+}
+
 .containerButtonSubmitTask{
     width: 100%;
     padding: 10px;
     max-width: 510px;
     display: flex;
-    margin-top: 80px;
+    margin-top: 30px;
     margin-bottom: 20px;
 }
 .containerButtonSubmitTask > input { 
@@ -205,3 +229,27 @@
 .containerButtonSubmitTask > input:hover{
     background-color: #e8823e;
 }
+
+
+
+
+
+
+
+
+.div-select-container{
+    width:100%;
+    max-width: 520px;
+    padding: 10px;
+}
+
+.select-friend-task{
+    background-color: #2C2E30;
+    width: 100%;
+    max-width: 510px;
+}
+
+
+
+
+

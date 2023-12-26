@@ -15,6 +15,7 @@ export const handleRegister = async () => {
   const name = document.getElementById("usernameRegister").value;
   const password = document.getElementById("passwordRegister").value;
   const passwordRepeat = document.getElementById("passwordRepeat").value;
+  const sexoSeleccionado = document.getElementById("selectSexo").value ;
   if (name.length > 3) {
     if (name.length < 25) {
       if (password.length > 4) {
@@ -22,6 +23,7 @@ export const handleRegister = async () => {
           const dataNewUser = {
             name,
             password,
+            sexo : sexoSeleccionado
           };
 
           try {
@@ -88,11 +90,12 @@ export const handleLogin = async () => {
           error: "error",
         });
 
-        console.log(response);
+        //console.log(response);
         buttonRegister.classList.remove("disableButtonSubmit");
         buttonLogin.classList.remove("disableButtonSubmit");
 
         localStorage.setItem("token", response.data?.token);
+        localStorage.setItem("id", response.data?.id);
         localStorage.setItem("user", response.data?.name);
         window.location.href = "/";
       } catch (error) {

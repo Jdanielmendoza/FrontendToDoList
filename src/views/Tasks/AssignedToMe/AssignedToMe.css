@@ -1,0 +1,48 @@
+:root {
+    --orange: #ff6600;
+    --light-orange: #ff983f;
+    --pale-yellow: #ffffa1;
+    --light-gray: #f5f5f5;
+    --gray: #929292;
+    --dark-gray: #1d1f21;
+    --darker-gray: #2c2e30;
+    --charcoal: #444648;
+    --lighter-gray: #e0e0e0;
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.containerAllHome{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--darker-gray);
+}
+
+.container_Home-friend{
+    width: 100%;
+    background-color: var(--darker-gray);
+    padding-bottom: 0px; 
+    min-height: 100vh;
+}
+
+.containerAllTask{
+    width: 100%;
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+#title-tip-task{
+    color: #f5f5f5;
+    font-family: 'Roboto';
+    padding: 8px 10px;
+    font-size: 20px;
+    margin-bottom: 5px;
+}

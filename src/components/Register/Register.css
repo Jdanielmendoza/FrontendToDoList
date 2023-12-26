@@ -22,9 +22,9 @@
     border-style: none;
     background-color: var(--pale-yellow);
     border-bottom: 1px solid  #bebe6b;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower';
     color: var(--darker-gray);
-    font-size: 1.3em;
+    font-size: 1.2em;
     padding: 0 5px ;
     margin: 15px 0 ;
     width: 100%;
@@ -35,4 +35,16 @@
 
 .formRegisterUser>input:focus{
     outline: none;
+}
+.selectSexo{
+    background-color: var(--pale-yellow);
+    width: 100%;
+    border-style: none;
+    padding: 10px 2px;
+    margin: 5px 0 ;
+    font-size: 1.2em;
+    color: var(--darker-gray);
+    border: dashed;
+    outline: none;
+    border-radius: 3px;
 }

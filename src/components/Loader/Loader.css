@@ -1,0 +1,69 @@
+.ContainerFlipping{
+   width: 100%;
+   min-height: 80vh;
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+   padding-top: 80px;
+   position: absolute;
+}
+
+.flipping {
+    width: 48px;
+    height: 48px;
+    display: flex;
+ }
+ 
+ .flipping::before,
+ .flipping::after {
+    content: "";
+    flex: 1;
+    animation: flipping-r4sfc4sm 1.5s -0.25s infinite linear alternate both;
+ }
+ 
+ .flipping::after {
+    --s: -1,-1;
+    animation-delay: 0.5s;
+ }
+ 
+ @keyframes flipping-r4sfc4sm {
+    0%, 30% {
+       transform: scale(var(--s,1)) translate(0px) perspective(120px) rotateY(0deg);
+       clip-path: polygon(50% 0,100% 0,100% 100%,50% 100%,0 75%,0 25%);
+       background: #ffffa1;
+    }
+ 
+    37.5% {
+       transform: scale(var(--s,1)) translate(-8px) perspective(120px) rotateX(0deg);
+       clip-path: polygon(50% 0,100% 0,100% 100%,50% 100%,0 75%,0 25%);
+       background: #ffffa1;
+    }
+ 
+    50% {
+       transform: scale(var(--s,1)) translate(-8px) perspective(120px) rotateX(-90deg);
+       clip-path: polygon(50% 0,100% 0,100% 100%,50% 100%,0 75%,0 25%);
+       background: #ffffa1;
+       border-radius: 0;
+    }
+ 
+    50.01% {
+       transform: scale(var(--s,1)) translate(-8px) perspective(120px) rotateX(-90.1deg);
+       clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,0 100%,0 25%);
+       background: #ffb132;
+       border-radius: 80px 0 0 80px;
+    }
+ 
+    62.5% {
+       transform: scale(var(--s,1)) translate(-8px) perspective(120px) rotateX(-180deg);
+       clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,0 100%,0 25%);
+       background: #ffb132;
+       border-radius: 80px 0 0 80px;
+    }
+ 
+    70%, 100% {
+       transform: scale(var(--s,1)) translate(0px) perspective(120px) rotateX(-180deg);
+       clip-path: polygon(0 0,100% 0,100% 100%,50% 100%,0 100%,0 25%);
+       background: #ffb132;
+       border-radius: 80px 0 0 80px;
+    }
+ }

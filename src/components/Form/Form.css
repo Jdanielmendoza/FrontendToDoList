@@ -49,9 +49,9 @@
   background-color: var(--pale-yellow);
   width: 60%;
   max-width: 220px;
-  font-family: "Indie Flower", cursive;
+  font-family: "Indie Flower";
   color: var(--orange);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .ulToggle > li {
   width: 50%;
@@ -90,7 +90,7 @@
   cursor: pointer;
   background-color: var(--light-orange);
   border-style: none;
-  font-family: "Indie Flower", cursive;
+  font-family: "Indie Flower";
   font-size: 1.4em;
   color: var(--darker-gray);
   transition: all 0.25s;

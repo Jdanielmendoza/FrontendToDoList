@@ -1,0 +1,79 @@
+.containerCountDownTimer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.svgTimer {
+  width: 260px;
+  height: 260px;
+  margin: 1em;
+}
+
+.bg {
+  fill: none;
+  stroke-width: 3px;
+  stroke: #1a2c34;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.circleDinamyc {
+  fill: none;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  stroke: rgb(246, 220, 88);
+  stroke-width: 3px;
+  stroke-dasharray: 720;
+  /* stroke-dashoffset :0; */
+  stroke-dashoffset: var(--durationTimePomodoro);
+  animation: anime infinite linear;
+  /* animation-duration: var(--animDuration); */
+}
+
+.TimerNumber{
+    position: absolute;
+    transform: translateY(10px);
+    font-size: 3.5rem;
+    font-family: 'Roboto';
+    color: rgb(255, 255, 255);
+    
+}
+
+.containerPointSession{
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* @keyframes anime {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 716;
+  }
+}
+.lineStatic {
+  fill: none;
+  stroke: rgb(0, 255, 64);
+  stroke-width: 2px;
+  transform-origin: 50% 50%;
+}
+.line {
+  fill: none;
+  stroke: rgb(0, 255, 64);
+  stroke-width: 2px;
+  transform-origin: 50% 50%;
+  animation: animeLine infinite linear;
+  /* animation-duration: var(--animDuration); 
+}*/
+/*@keyframes animeLine {
+  0% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(-361deg);
+  }
+}
+ */

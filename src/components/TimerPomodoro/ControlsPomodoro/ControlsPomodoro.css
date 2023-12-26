@@ -1,0 +1,23 @@
+.containerControlsPomodoro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0 0 0;
+}
+
+.buttonControlsPomodoro{
+    cursor: pointer;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    /* background:linear-gradient(rgba(5, 142, 206, 0.902), rgba(202, 6, 124, 0.852)); */
+    background-color: rgba(172, 160, 1, 0.765);
+}
+.buttonPlayPause{
+    transform: scale(1.5);
+    margin: 0 25px;
+}

@@ -1,0 +1,24 @@
+.containerContainerTimerPomodoro {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.containerTimerPomodoro {
+  width: 100%;
+  min-height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TimerPomodoro {
+  min-width: 320px;
+  width: 100%;
+  max-width: 500px;
+  min-height: calc(100vh - 50px - 70.6px);
+  color: aliceblue;
+}
+
+
+
+

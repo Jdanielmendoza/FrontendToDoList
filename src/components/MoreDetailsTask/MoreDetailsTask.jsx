@@ -6,7 +6,10 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
 
-import updateTask from "../../apiServices/updateTask";
+import updateTask, {
+  apiUpdateTaskAssignedToMe,
+  updateTaskForFriends,
+} from "../../apiServices/updateTask";
 import createTask from "../../apiServices/createTask";
 import deleteOneTask from "../../apiServices/deleteOneTask";
 
@@ -17,32 +20,118 @@ import trash from "/trash.svg";
 import arrowBack from "/arrowBack.svg";
 
 import icon_pallete from "/icon_pallete.svg";
+import clockTimer from "/clockPomodoro.svg";
+
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+import { obtenerMisAmigos } from "../../apiServices/Friends/friends.services.js";
+import { getOneTaskAssignedToFriends } from "../../apiServices/getOneTask.js";
+
+const userDefaultAssginedTask = { value: localStorage.getItem("id") };
 
 const MoreDetailsTask = () => {
   const navigate = useNavigate();
   const [isActivetedUpdating, setIsActivetedUpdating] = useState(false);
-  const [title, setTitle] = useState("Titulo");
-  const [description, setDescription] = useState("Descripcion");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [colorSelected, setColorSelected] = useState("blue"); // default is blue
   const [isDone, setIsDone] = useState(false);
   const [isImportant, setIsImportant] = useState(false);
+  const [personasAsignadas, setPersonasAsignadas] = useState([]);
+  const [friendsOptions, setFriendsOptions] = useState([]);
+  const [isToAssigned, setIsToAssigned] = useState(false);
+  const [isToUpdateAssigned, setIsToUpdateAssigned] = useState(false);
+  const [defaultUsersOptions, setDefaultUsersOptions] = useState([]);
+  const [isLoadingUsersDefault, setIsLoadingUsersDefault] = useState(true);
+  const [isToUpdateTaskAssignedToMe, setIsToUpdateTaskAssignedToMe] =
+    useState(false);
 
   const { state } = useLocation();
-  useEffect(() => {
-    if (state != null) {
-      setIsActivetedUpdating(true);
-      setTitle(state.titulo);
-      setDescription(state.descripcion);
+  const location = useLocation();
 
-      if (state.hecho) {
-        setIsDone(true);
-      }
-      if (state.importante) {
-        setIsImportant(true);
-      }
-      const colorSelect = state?.color;
-      if (colorSelect) {
-        setColorSelected(colorSelect);
+  const animatedComponents = makeAnimated();
+
+  useEffect(() => {
+    // console.log(state);
+    if (state != null) {
+      //quiere decir que voy a actualizar una tarea o asignar una tarea
+      if (state?.asignarTarea) {
+        //entonces voy a asignar una tarea
+        setIsToAssigned(true);
+        setIsLoadingUsersDefault(false);
+        loadOptions();
+      } else {
+        if (state?.actualizarTareaParaAmigos) {
+          setIsToUpdateAssigned(true);
+          loadOptions();
+          setTitle(state.titulo);
+          setDescription(state.descripcion);
+
+          if (state.hecho) {
+            setIsDone(true);
+          }
+          if (state.importante) {
+            setIsImportant(true);
+          }
+          const colorSelect = state?.color;
+          if (colorSelect) {
+            setColorSelected(colorSelect);
+          }
+          const defaultFriendsAssigned = async () => {
+            try {
+              const usersAssignedOptions = [];
+              const response = await getOneTaskAssignedToFriends(
+                state.id_tarea
+              );
+              const assignedUsers = response.data;
+
+              assignedUsers.forEach((user) => {
+                usersAssignedOptions.push({
+                  value: user.id,
+                  label: user.nombre,
+                });
+              });
+              setPersonasAsignadas(usersAssignedOptions);
+              setDefaultUsersOptions(usersAssignedOptions);
+              setIsLoadingUsersDefault(false);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          defaultFriendsAssigned();
+        } else {
+          if (state?.soloVerTareaAsignadaAMi) {
+            setIsToUpdateTaskAssignedToMe(true);
+            setTitle(state.titulo);
+            setDescription(state.descripcion);
+
+            if (state.hecho) {
+              setIsDone(true);
+            }
+            if (state.importante) {
+              setIsImportant(true);
+            }
+            const colorSelect = state?.color;
+            if (colorSelect) {
+              setColorSelected(colorSelect);
+            }
+          } else {
+            setIsActivetedUpdating(true);
+            setTitle(state.titulo);
+            setDescription(state.descripcion);
+
+            if (state.hecho) {
+              setIsDone(true);
+            }
+            if (state.importante) {
+              setIsImportant(true);
+            }
+            const colorSelect = state?.color;
+            if (colorSelect) {
+              setColorSelected(colorSelect);
+            }
+          }
+        }
       }
     }
   }, []);
@@ -58,7 +147,6 @@ const MoreDetailsTask = () => {
   const sendTask = async () => {
     const buttonSaved = document.getElementById("buttonSendTask");
     buttonSaved.classList.add("disableButtonSubmit");
-
     const newTask = {
       id: state?.id,
       Titulo: title,
@@ -66,6 +154,7 @@ const MoreDetailsTask = () => {
       Color: colorSelected,
       Hecho: isDone,
       Importante: isImportant,
+      personas_tareas: [],
     };
     if (isActivetedUpdating) {
       try {
@@ -84,20 +173,102 @@ const MoreDetailsTask = () => {
         }, 800);
       }
     } else {
-      try {
-        const response = createTask(newTask);
-        await toast.promise(response, {
-          loading: "cargando",
-          success: "creado!",
-          error: "ocurrio algun error!",
-        });
-      } catch (error) {
-        console.log(error);
-        toast.error("ocurrio algun error!");
-      } finally {
-        setTimeout(() => {
-          navigate(-1);
-        }, 800);
+      if (isToAssigned) {
+        if (personasAsignadas.length == 0) {
+          toast.error("asigna la tarea a un amigo!");
+          buttonSaved.classList.remove("disableButtonSubmit");
+        } else {
+          try {
+            const response = createTask({
+              ...newTask,
+              personas_tareas: personasAsignadas,
+            });
+            await toast.promise(response, {
+              loading: "cargando",
+              success: "creado!",
+              error: "ocurrio algun error!",
+            });
+          } catch (error) {
+            console.log(error);
+            toast.error("ocurrio algun error!");
+          } finally {
+            setTimeout(() => {
+              navigate(-1);
+            }, 800);
+          }
+        }
+      } else {
+        if (isToUpdateAssigned) {
+          //actualizar una tarea asignada a mis amigos
+          if (personasAsignadas.length == 0) {
+            toast.error("asigna la tarea al menos a un amigo!");
+            buttonSaved.classList.remove("disableButtonSubmit");
+          } else {
+            try {
+              
+              const response = updateTaskForFriends({
+                ...newTask,
+                id: state?.id_tarea,
+                personas_tareas: personasAsignadas,
+              });
+              await toast.promise(response, {
+                loading: "cargando",
+                success: "actualizado",
+                error: "ocurrio algun error",
+              });
+            } catch (error) {
+              console.log(error);
+              //toast.error("ocurrio algun error!");
+            } finally {
+              setTimeout(() => {
+                navigate(-1);
+              }, 800);
+            }
+          }
+        } else {
+          if (isToUpdateTaskAssignedToMe) {
+            try {
+              const response = apiUpdateTaskAssignedToMe({
+                ...newTask,
+                id: state?.id_tarea,
+                idFriend: state.id,
+                personas_tareas: [userDefaultAssginedTask],
+              });
+              await toast.promise(response, {
+                loading: "cargando",
+                success: "actualizado",
+                error: "ocurrio algun error",
+              });
+            } catch (error) {
+              console.log(error);
+              //toast.error("ocurrio algun error!");
+            } finally {
+              setTimeout(() => {
+                navigate(-1);
+              }, 800);
+            }
+          } else {
+            // entonces es para crear una tarea para mi
+            try {
+              const response = createTask({
+                ...newTask,
+                personas_tareas: [userDefaultAssginedTask],
+              });
+              await toast.promise(response, {
+                loading: "cargando",
+                success: "creado!",
+                error: "ocurrio algun error!",
+              });
+            } catch (error) {
+              console.log(error);
+              toast.error("ocurrio algun error!");
+            } finally {
+              setTimeout(() => {
+                navigate(-1);
+              }, 800);
+            }
+          }
+        }
       }
     }
   };
@@ -116,10 +287,11 @@ const MoreDetailsTask = () => {
       if (result.isConfirmed) {
         const deleteTask = async () => {
           try {
-            console.log(state.id);
-            const response = await deleteOneTask(state?.id);
+            const taskId = location.pathname.split("/").pop();
+            const response = await deleteOneTask(taskId);
+            // console.log(response);
             navigate(-1);
-            Swal.fire("Deleted!", "Se elimino la nota!", "success");
+            Swal.fire("Deleted!", "Se elimino la tarea!", "success");
           } catch (error) {
             console.log(error);
           }
@@ -127,6 +299,19 @@ const MoreDetailsTask = () => {
         deleteTask();
       }
     });
+  };
+
+  const loadOptions = async (inputValue, callback) => {
+    try {
+      // Llama a obtenerMisAmigos para obtener las opciones de manera asíncrona
+      const amigos = await obtenerMisAmigos();
+      const options = amigos.map((amigo) => {
+        return { label: amigo?.nombre, value: amigo?.id };
+      });
+      setFriendsOptions(options);
+    } catch (error) {
+      console.error("Error al cargar opciones:", error);
+    }
   };
 
   return (
@@ -148,10 +333,39 @@ const MoreDetailsTask = () => {
             className="trash"
             onClick={confirmDeleteTask}
           />
+        ) : isToUpdateAssigned ? (
+          <img
+            src={trash}
+            alt=""
+            className="trash"
+            onClick={confirmDeleteTask}
+          />
         ) : (
           <h3 className="newNote">nueva nota</h3>
         )}
       </nav>
+
+      {(isToAssigned || isToUpdateAssigned) && !isLoadingUsersDefault && (
+        <div className="div-select-container">
+          <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            options={friendsOptions}
+            className="select-friend-task"
+            styles={{
+              control: (styles) => {
+                return { ...styles, backgroundColor: "#2C2E30", width: "100%" };
+              },
+              input: (styles) => {
+                return { ...styles, color: "#E4E6EB" };
+              },
+            }}
+            onChange={(event) => setPersonasAsignadas(event)}
+            defaultValue={defaultUsersOptions}
+          />
+        </div>
+      )}
 
       <div className="ContainerFormEditingTask">
         <div className="formEditinTask">
@@ -163,6 +377,7 @@ const MoreDetailsTask = () => {
             onChange={() => {
               setTitle(document.querySelector(".formEditing_Title").value);
             }}
+            placeholder="Titulo"
           />
           <textarea
             style={{ "--color": colorTask[colorSelected] }}
@@ -173,6 +388,7 @@ const MoreDetailsTask = () => {
                 document.querySelector(".formEditing_Description").value
               );
             }}
+            placeholder="Descripcion"
           />
         </div>
       </div>
@@ -256,8 +472,27 @@ const MoreDetailsTask = () => {
         </div>
       </div>
 
+      {isActivetedUpdating && (
+        <div
+          className="ContainerDoPomodoro"
+          onClick={() => {
+            navigate("pomodoro");
+          }}
+        >
+          <div className="DoPomodoro">
+            <p>Hacer con Pomodoro</p>
+            <img src={clockTimer} alt="Clock" />
+          </div>
+        </div>
+      )}
+
       <div className="containerButtonSubmitTask">
-        <input type="button" value="Guardar" onClick={sendTask} id='buttonSendTask'/>
+        <input
+          type="button"
+          value="Guardar"
+          onClick={sendTask}
+          id="buttonSendTask"
+        />
       </div>
     </div>
   );

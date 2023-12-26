@@ -1,0 +1,58 @@
+.containerAllSections{
+    background-color: #242526;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-sections {
+  background-color: #242526;
+  width: 100%;
+  min-width: 300px;
+  max-width: 600px;
+  min-height: calc(100vh - 50px);
+  padding: 12px;
+}
+
+.section-friend {
+  border-bottom: 1px solid #5c5c5c;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+.section-friend>.requestFriends{
+    padding-top: 5px;
+    overflow: hidden;
+}
+.title-friend {
+  color: #e4e6eb;
+  font-size: 20px;
+  font-family: "Roboto";
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+}
+.title-friend-1 {
+  font-size: 24px;
+}
+
+.div-buttons-friend {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 20px 0 0 0;
+}
+.div-buttons-friend > .button-friend {
+  text-decoration: none;
+  color: #e4e6eb;
+  background-color: #3a3b3c;
+  padding: 8px 10px;
+  border-radius: 50px;
+  font-family: "Roboto";
+  font-weight: 600;
+}
+
+.numberFriend {
+  color: #e41e3f;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 600;
+}

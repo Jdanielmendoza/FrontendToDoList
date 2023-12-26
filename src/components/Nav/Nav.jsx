@@ -9,6 +9,8 @@ const Nav = ({ setTaskUsers, taskUsers }) => {
     setUser(name);
   }, []);
 
+  const navigate = useNavigate(); 
+
   const openMenu = () => {
     const navMenu = document.querySelector(".container-nav-menu");
     navMenu.classList.add("container-nav-menu-Active");
@@ -25,12 +27,20 @@ const Nav = ({ setTaskUsers, taskUsers }) => {
     window.location.href = "/";
   };
 
+  const navigateToAssignedTask =()=>{
+    navigate('/createTaskForFriend',{
+      state:{
+        asignarTarea:true
+      }
+    })
+  }
+
   const filterTaskUser = (e) => {
     if (e.target.value == "") {
       setTaskUsers(taskUsers);
     } else {
       const responseFilter = taskUsers.filter((task) =>
-        task.titulo.toLowerCase().startsWith(e.target.value.toLowerCase())
+        task.titulo.toLowerCase().includes(e.target.value.toLowerCase())
       );
       setTaskUsers(responseFilter)
     }
@@ -47,7 +57,7 @@ const Nav = ({ setTaskUsers, taskUsers }) => {
           <div className="container-nav-menu">
             <nav className="nav-Menu">
               <h3 className="nav-menu-titleUser">{user}</h3>
-              <details open className="detailsProfile">
+              <details className="detailsProfile">
                 <summary>Perfil</summary>
                 <div className="details">
                   <Link to={"/changePassword"} className="LinkPage">
@@ -58,8 +68,38 @@ const Nav = ({ setTaskUsers, taskUsers }) => {
                   cerrar sesión
                 </div>
               </details>
-              <details open className="detailsContact">
-                <summary>contácto</summary>
+
+              <details open className="detailsProfile">
+                <summary>Amigos</summary>
+                <div className="details">
+                  <Link to={"/friends"} className="LinkPage">
+                    administrar amigos
+                  </Link>
+                </div>
+                
+              </details>
+
+              <details open className="detailsProfile">
+                <summary>Tareas</summary>
+                <div className="details">
+                  <div onClick={navigateToAssignedTask} className="LinkPage">
+                    asignar tareas
+                  </div>
+                </div>
+                <div className="details">
+                  <Link to={"/assignedToMe"} className="LinkPage">
+                    asignadas a mi
+                  </Link>{" "}
+                </div>
+                <div className="details">
+                  <Link to={"/assignedToFriend"} className="LinkPage">
+                    asignadas a amigos
+                  </Link>{" "}
+                </div>
+              </details>
+
+              <details className="detailsContact">
+                <summary>Contácto</summary>
                 <div className="details">
                   <a
                     href="https://www.linkedin.com/in/jose-daniel-mendoza-guzman-927867234/"
@@ -83,6 +123,7 @@ const Nav = ({ setTaskUsers, taskUsers }) => {
                   </a>
                 </div>
               </details>
+
               <div className="buttonCloseNavMenu" onClick={closeMenu}>
                 <img src="/arrowCloseMenu.svg" alt="arrow" />
               </div>
